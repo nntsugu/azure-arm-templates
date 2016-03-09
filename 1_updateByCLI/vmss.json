@@ -4,7 +4,7 @@
       "sku": {
         "name": "Standard_A0",
         "tier": "Standard",
-        "capacity": 1
+        "capacity": 3
       },
       "properties": {
         "upgradePolicy": {
