@@ -1,64 +1,33 @@
 {
-  "value": [
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+  },
+  "variables": {
+    "location": "Japan West",
+    "namingInfix": "mesos-agent-D6290BFB-vmss"
+  },
+  "resources": [
     {
+      "type": "Microsoft.Compute/virtualMachineScaleSets",
+      "name": "mesos-agent-D6290BFB-vmss",
+      "location": "Japan West",
+      "apiVersion": "2015-06-15",
+      "tags": {
+        "displayName": "VMScaleSet"
+      },
       "sku": {
         "name": "Standard_A0",
         "tier": "Standard",
-        "capacity": 3
+        "capacity": "3"
       },
       "properties": {
         "upgradePolicy": {
           "mode": "Manual"
         },
-          "storageProfile": {
-            "osDisk": {
-              "vhdContainers": [
-                "https://007lpilpuvdqvfamesos1.blob.core.windows.net/osdisk",
-                "https://607lpilpuvdqvfamesos2.blob.core.windows.net/osdisk",
-                "https://c07lpilpuvdqvfamesos3.blob.core.windows.net/osdisk"
-              ],
-              "name": "mesos-agent-D6290BFBvmssosdisk0",
-              "createOption": "FromImage",
-              "caching": "ReadWrite"
-            },
-            "imageReference": {
-              "publisher": "Canonical",
-              "offer": "UbuntuServer",
-              "sku": "14.04.3-LTS",
-              "version": "latest"
-            }
-          },
-          "networkProfile": {
-            "networkInterfaceConfigurations": [
-              {
-                "name": "agentNodeNic",
-                "properties": {
-                  "primary": true,
-                  "ipConfigurations": [
-                    {
-                      "name": "nicipconfig",
-                      "properties": {
-                        "subnet": {
-                          "id": "/subscriptions/ef1ee898-8e06-44bf-94cf-ee85cb399579/resourceGroups/RSets/providers/Microsoft.Network/virtualNetworks/mesos-vnet-D6290BFB/subnets/mesos-subnet"
-                        },
-                        "loadBalancerBackendAddressPools": [
-                          {
-                            "id": "/subscriptions/ef1ee898-8e06-44bf-94cf-ee85cb399579/resourceGroups/RSets/providers/Microsoft.Network/loadBalancers/mesos-agent-lb-D6290BFB/backendAddressPools/mesos-agent-pool-D6290BFB"
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        "provisioningState": "Succeeded"
-      },"id":"/subscriptions/ef1ee898-8e06-44bf-94cf-ee85cb399579/resourceGroups/RSets/providers/Microsoft.Compute/virtualMachineScaleSets/mesos-agent-D6290BFB-vmss",
-      "name": "mesos-agent-D6290BFB-vmss",
-      "type": "Microsoft.Compute/virtualMachineScaleSets",
-      "location": "japanwest"
+        "virtualMachineProfile": {
+        }
+      }
     }
   ]
 }
